@@ -6,28 +6,34 @@ function isTextNode(value) {
   return !!(value && value.nodeType === 3);
 }
 
-
 function tag(name, ...children) {
   const element = document.createElement(name);
 
   for (let child of children) {
-    console.assert(isHtmlElement(child) || isTextNode(child), { child: "child is invalid" });
+    console.assert(isHtmlElement(child) || isTextNode(child), {
+      child: "child is invalid",
+    });
     element.appendChild(child);
   }
 
-  element.$att = function (key, value) {
-    if (typeof key === "object") {
-      // iterate over keys of object and assign them
-      // as attributes with corresponding values
+  // attribute can either be a key for the value, or an object of attribute value pairs
+  // there is a cleaner way to do this for sure but this will do for now
+  element.$att = function (attribute, value) {
+    if (typeof attribute === "object") {
+      for (const [k, v] of Object.entries(attribute)) {
+        this.setAttribute(k, v);
+      }
+      return this;
+    } else {
+      this.setAttribute(attribute, value);
     }
-    this.setAttribute(key, value);
     return this;
   };
 
   return element;
 }
 
-function text(data="") {
+function text(data = "") {
   if (isHtmlElement(data)) {
     return data;
   }
@@ -40,13 +46,40 @@ function div(...children) {
   return element;
 }
 
+// TEXT ELEMENTS
+
 function p(data, ...children) {
   const element = tag("p", text(data), ...children);
   return element;
 }
 
 function h1(data, ...children) {
-  const element = tag("p", text(data), ...children);
+  const element = tag("h1", text(data), ...children);
+  return element;
+}
+
+function h2(data, ...children) {
+  const element = tag("h2", text(data), ...children);
+  return element;
+}
+
+function h3(data, ...children) {
+  const element = tag("h3", text(data), ...children);
+  return element;
+}
+
+function h4(data, ...children) {
+  const element = tag("h4", text(data), ...children);
+  return element;
+}
+
+function h5(data, ...children) {
+  const element = tag("h5", text(data), ...children);
+  return element;
+}
+
+function h6(data, ...children) {
+  const element = tag("h6", text(data), ...children);
   return element;
 }
 
@@ -56,41 +89,3 @@ function mount(root, component) {
     root.appendChild(component);
   });
 }
-
-const root = document.getElementById("root");
-
-console.log(p("test"));
-
-const App = div(
-  div(
-    div(
-      p("hello"),
-      p("world"),
-    )
-  ).$att("class", "text"),
-).$att("id", "parent");
-
-mount(root, App);
-
-// EXAMPLE APP
-/*
-  ./App.js
-
-  function App() {
-    return div(
-      h1("hello world")
-      .att({ class: "header", id: "test" })
-    )
-    .att("id", "main")
-  }
-
-*/
-/*
-  ./index.js
-
-  import { mount } from "inslag";
-  import { App } from "./App.js";
-
-  const root = document.getElementById("root");
-  mount(root, App);
-*/

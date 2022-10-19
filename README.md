@@ -4,6 +4,20 @@
 WIP
 
 
+## Using tags
+
+### Notice - as for now not all tags are supported, and regardless you might to make use of a custom tag, so in order to do that use the tag() function
+
+```js
+tag("custom-tag").$att({
+  "class": "mytag",
+  "data-js": "some data",
+  "style": "color: #004daa; font-size: 20px;"
+})
+```
+
+
+
 ## Code example
 
 ### `App.js` - Main component
