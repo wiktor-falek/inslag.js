@@ -84,8 +84,14 @@ function h6(data, ...children) {
 }
 
 function mount(root, component) {
+  if (typeof component === "function") {
+    component = component();
+  }
+  // check if component is a function
+  // if it is call it first, then append to root
+
   window.addEventListener("load", (event) => {
     console.log("inslag.js loaded");
-    root.appendChild(component);
+    root.appendChild(component)
   });
 }
