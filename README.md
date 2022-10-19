@@ -16,7 +16,13 @@ tag("custom-tag").$att({
 })
 ```
 
+### If you need to pass text into an element use text("mystring") to create a textNode, for example:
+```js
+tag("li", text("1"))
+```
+### Tags that expect text such as paragraphs and headers do this by default, but for custom tags you need to do this manually
 
+<hr>
 
 ## Code example
 
@@ -25,9 +31,9 @@ tag("custom-tag").$att({
   function App() {
     return div(
       h1("hello world")
-      .att({ class: "header", id: "test" })
+      .$att({ class: "header", id: "test" })
     )
-    .att("id", "main")
+    .$att("id", "main")
   }
 ```
 ### `index.js` - Entry point
