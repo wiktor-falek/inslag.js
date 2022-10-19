@@ -28,18 +28,19 @@ tag("li", text("1"))
 
 ### `App.js` - Main component
 ```js
-  function App() {
+  export default function App() {
     return div(
       h1("hello world")
       .$att({ class: "header", id: "test" })
     )
-    .$att("id", "main")
+    .$att("id", "main");
   }
 ```
 ### `index.js` - Entry point
 ```js
-  import { mount } from "inslag";
-  import { App } from "./App.js";
+  // As for now importing is not supported
+  // import { mount } from "inslag";
+  // import { App } from "./App.js";
 
   const root = document.getElementById("root");
   mount(root, App);
