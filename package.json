@@ -1,0 +1,22 @@
+{
+  "name": "inslag",
+  "version": "1.0.1",
+  "description": "Lightweight component framework for frontend",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wiktor-falek/inslag.js.git"
+  },
+  "keywords": [
+    "inslag",
+    "inslag.js"
+  ],
+  "author": "Wiktor Falek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wiktor-falek/inslag.js/issues"
+  },
+  "homepage": "https://github.com/wiktor-falek/inslag.js#readme"
+}

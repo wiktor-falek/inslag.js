@@ -11,35 +11,46 @@
 
 ## Installing
 
-### Cdn
+### Npm
+Install inslag by running `npm install inslag` 
 
-### Node
+Include the script inside your html file inside head
+```html
+<script src="./node_modules/inslag/index.js"></script>
+```
+### Cdn
+Alternatively import script directly from cdn
+```html
+<script src="https://cdn.jsdelivr.net/npm/inslag@1.0.0/index.js"></script>
+```
+
 
 <br>
 
 
-## Setting up project
+## Setting up a project
 
 ### `index.html`
 ```html
 <!DOCTYPE html>
-  <head>
-    <!-- this will be a cdn link once it's published -->
-    <script src="inslag.js"></script>
-
-    <!-- this script must be either deferred or located at the bottom of body -->
-    <script src="index.js" defer></script>
-    <title>inslag.js</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/inslag@1.0.0/index.js"></script>
+  <script src="index.js" defer></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+</body>
 </html>
 ```
 
 ### `index.js`
 ```js
-// main component
+// Main component
 function App() {
   return div(
     h1("Hello World"),
@@ -49,14 +60,17 @@ function App() {
   )
 }
 
-// mounting the App component inside #root element of index.html
+// Mounting the App component inside the #root element
 const root = document.getElementById("root");
 mount(root, App);
 
-// alternatively
+// Alternatively you can directly mount an element
 mount(root, div(
-    p("You can also mount an element directly")
+    h1("Hello World"),
+    div(
+      p("This is an inslag presentation page.")
     )
+  )
 )
 ```
 
@@ -131,7 +145,7 @@ button(`Click me`).$evt("onclick", () => {})
 ```js
 tag("example-custom-tag").$att({
   "class": "my-tag",
-  "data-js": "some data",
+  "data-index": "0",
   "style": "color: #004daa; font-size: 20px;"
 })
 ```
