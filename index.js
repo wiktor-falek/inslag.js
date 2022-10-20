@@ -30,14 +30,12 @@ function tag(name, ...children) {
     return this;
   };
 
-  element.$evt = function(evtType, cb) {
+  element.$evt = function (evtType, cb) {
     element[evtType] = cb; // element.onclick = (e) => { console.log(e) }
     return this;
-  }
+  };
 
-  element.$val = function() {
-    
-  }
+  element.$val = function () {};
 
   return element;
 }
@@ -46,10 +44,10 @@ function text(data = "") {
   if (isHtmlElement(data)) {
     return data;
   }
-  
+
   // this could potentially have some edge cases
   // but generally calls .toString() if that method exists
-  const stringifiedData = String(data); 
+  const stringifiedData = String(data);
 
   const textNode = document.createTextNode(stringifiedData);
   return textNode;
@@ -132,6 +130,55 @@ function h6(data, ...children) {
   return element;
 }
 
+/**
+ *
+ * @param {Object} routes
+ */
+function router(routes) {
+  /*
+  {
+    "/": Home,
+    "/": { component: HomeComponent, ...options},
+    "default": NotFound
+  }
+  */
+
+  let element = div();
+
+  function syncHash() {
+    let location = window.location.hash.split("#")[1] || "/";
+
+    if (!location in routes) {
+      // do something perhaps
+      return;
+    }
+    let component = routes[location];
+
+    // if component is passed to router without being called
+    if (typeof component === "function") {
+      component = component();
+    }
+
+    console.assert(isHtmlElement(component), {
+      component,
+      error: `invalid component in router at location '${location}'`,
+    });
+
+    element.replaceChildren(component);
+  }
+
+  syncHash();
+
+  window.addEventListener("hashchange", syncHash);
+
+  return element;
+}
+
+/**
+ *
+ * @param {HTMLDivElement} root
+ * @param {HTMLElement | function: HTMLElement} component
+ */
 function mount(root, component) {
   if (typeof component === "function") {
     component = component();
@@ -139,6 +186,6 @@ function mount(root, component) {
 
   window.addEventListener("load", () => {
     console.log("Inslag.js Mounted");
-    root.appendChild(component)
+    root.appendChild(component);
   });
 }
