@@ -7,8 +7,6 @@
 
 # Getting started
 
-<br>
-
 ## Installing
 
 ### Npm
