@@ -1,4 +1,4 @@
-## Lightweight, performant (blazingly fast) and ugly ~~also probably worse than literally any other option~~ component framework for frontend JavaScript. Heavily inspired by [grecha.js](https://github.com/tsoding/grecha.js) by [Tsoding](https://github.com/tsoding)
+## Yet another JS framework for frontend JavaScript. A for fun project, that is currently abandoned but might get revisited someday and actually made into something usable. Heavily inspired by [grecha.js](https://github.com/tsoding/grecha.js) by [Tsoding](https://github.com/tsoding)
 
 <br>
 
