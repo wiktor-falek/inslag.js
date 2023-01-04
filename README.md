@@ -1,6 +1,6 @@
 ## Yet another JS framework for frontend JavaScript. A for fun project, that is currently abandoned but might get revisited someday and actually made into something usable. Heavily inspired by [grecha.js](https://github.com/tsoding/grecha.js) by [Tsoding](https://github.com/tsoding)
 
-### In the future this project would have actual functionality like js and scoped css, and syntactic sugar cause this is ugly.
+### In the future this project would have actual functionality like reactivity, hooks and scoped css, and syntactic sugar cause this is ugly.
 
 <br>
 
